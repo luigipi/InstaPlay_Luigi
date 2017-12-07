@@ -16,7 +16,7 @@ getViewComponent = () => {
         <View style={[this.props.buttonViewStyle, viewStyles.buttonViewStyle]}>
           <Image
             resizeMode={'contain'}
-            style={[ {width: 30, height: 30}, this.props.iconStyle]}
+            style={[ {width: 25, height: 25}, this.props.iconStyle]}
             source={this.props.iconSource}
 
           />
