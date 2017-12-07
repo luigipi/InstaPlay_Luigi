@@ -21,7 +21,7 @@ export default class App extends Component {
     return(
       <ImageBackground style={viewStyles.container}
       resizeMode = {'cover'}
-      source={require('./src/images/insta-bg.jpg')}
+      source={require('./src/images/insta-bg2.jpg')}
       >
 
       <StatusBar
