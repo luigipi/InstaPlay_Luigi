@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View , ImageBackground, StatusBar, ScrollView, Image } from 'react-native';
 import Dimensions from 'Dimensions';
+import LoginButton from './src/components/LoginButton';
 
 //This code will give the width and height of the currrent screen
 const windowSize = Dimensions.get('window');
