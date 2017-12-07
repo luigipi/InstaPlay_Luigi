@@ -45,9 +45,7 @@ getViewComponent = () => {
           style={[this.props.touchableHilightStyle, viewStyles.touchableHilightStyle]}
           onPress={this.props.buttonTapped}
         >
-          <View style={[this.props.buttonViewStyle, viewStyles.buttonViewStyle]}>
-              <Text style={[this.props.buttonViewStyle, { backgroundColor: 'transparent'}]}>{this.props.children}</Text>
-          </View>
+          {this.getViewComponent()}
 
         </TouchableHighlight>
       );
