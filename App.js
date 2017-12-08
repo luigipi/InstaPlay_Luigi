@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View , ImageBackground, StatusBar, ScrollView, Image, Linking } from 'react-native';
+import { StyleSheet, Text, View , ImageBackground, StatusBar, ScrollView, Image, Linking, WebView } from 'react-native';
 import Dimensions from 'Dimensions';
 import LoginButton from './src/components/LoginButton';
 import TappableText from './src/components/TappableText';
@@ -31,13 +31,42 @@ export default class App extends Component {
 
     super(props);
 
+// This is the inital state of the app on start-up
     this.state={
+      authURL: urls.instagramAuthLogin,
+      accessToken: '',
+      displayAuthenticationWebView: false,
+      displayLoginScreen: true
 
     }
   }
+onURLStateChange = (webViewState) => {
+
+// the string to search for in order to get an access token
+  const accessTokenSubString = 'access_token=';
+
+  // this will store the current url being displayed in our custom browser
+  const currentURL = webViewState.url;
+
+  console.log("current URL ="  + currentURL)
+
+}
+
+authWebViewComponent = () => {
+  return (
+    <WebView
+      source={{ uri: this.state.authURL }}
+      startInLoadingState={true}
+      onNavigationStateChange={this.onURLStateChange}
+     />
+  );
+}
+
 
    buttonTapped = () => {
-     console.log('Button Tapped');
+
+     // when the button is pressed set displayAuthenticationWebView to true
+     this.setState({displayAuthenticationWebView: true, displayLoginScreen:false})
 
    }
 
@@ -142,9 +171,17 @@ signupFooterComponent = () => {
   );
 }
   render() {
-    return (
-      this.loginScreenComponent()
-    );
+    if(this.state.displayLoginScreen == true && this.state.displayAuthenticationWebView == false){
+      return (
+        this.loginScreenComponent()
+      );
+    }
+    else if (this.state.displayLoginScreen == false && this.state.displayAuthenticationWebView){
+      return(
+        this.authWebViewComponent()
+      );
+    }
+
   }
 }
 
@@ -279,7 +316,7 @@ const urls = {
   forgotInstagramLogin: 'https://www.instagram.com/accounts/password/reset',
   twitterLogin: 'https://twitter.com/login?lang=en',
   instagramSignUp: 'https://www.instagram.com/accounts/emailsignup/?hl=en',
-  instagramAuthLogin: 'https://api.instagram.com/oauth/authorize/?client_id=cda6dee7d8164a868150910407962f52&redirect_uri=http://www.kaitechconsulting.com&response_type=token&scope=basic+follower_list+comments+likes',
+  instagramAuthLogin: 'https://api.instagram.com/oauth/authorize/?client_id=aa91b8b3acd74913bdbd3267a59282a2&redirect_uri=https://www.bhubng.com&response_type=token&scope=basic+follower_list+comments+likes',
   instagramLogout: 'https://instagram.com/accounts/logout',
   instagramBase: 'https://www.instagram.com/',
 };
