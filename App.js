@@ -80,6 +80,10 @@ export default class App extends Component {
             Facebook
           </LoginButton>
           {this.forgotLoginDetailsComponent()}
+
+          {this.orSeparatorComponent()}
+
+          {this.twitterLoginComponent()}
       </ScrollView>
 
       </ImageBackground>
@@ -98,7 +102,32 @@ export default class App extends Component {
     );
   }
 
-  
+  twitterLoginComponent = () => {
+    return(
+      <View style={viewStyles.twitterLoginContainer}>
+        <Image
+          style={[viewStyles.twitterLogo, {width: 30, height: 30}]}
+          resizeMode={'contain'}
+          source={require('./src/images/twitter_bird.png')}
+        />
+        <TappableText
+          textStyle={[textStyles.twitterLoginText, textStyles.twitterLoginDetailsBold]}
+          textTapped={ () => Linking.openURL(urls.twitterLogin) }
+          >Log in with twitter</TappableText>
+      </View>
+    );
+  }
+
+  orSeparatorComponent = () => {
+    return(
+      <View style={viewStyles.orSeparatorContainer}>
+        <View style={viewStyles.orSeparatorLine}  />
+        <Text style={textStyles.orSeparatorTextStyle}>OR</Text>
+        <View style={viewStyles.orSeparatorLine} />
+      </View>
+    );
+  }
+
   render() {
     return (
       this.loginScreenComponent()
@@ -154,6 +183,36 @@ const viewStyles = StyleSheet.create({
     paddingHorizontal: 10,
     marginTop: 10
 
+  },
+  orSeparatorContainer:{
+    flexDirection: 'row',
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginVertical: '7%'
+  },
+
+  orSeparatorLine:{
+    height: 1,
+    flex:5,
+    backgroundColor: colors.socialMedialButtonBorderColor,
+    borderColor: colors.socialMedialButtonBorderColor,
+    borderWidth: 0.5,
+    marginHorizontal: 5
+  },
+  twitterLoginContainer:{
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 10,
+    marginTop: 10
+
+  },
+  twitterLogo:{
+    width: (0.45 * windowSize.width),
+    height:(0.15 * windowSize.height),
+    marginRight: 10,
+    alignSelf: 'center'
   }
 
 });
@@ -172,6 +231,21 @@ const textStyles ={
 
    },
    forgotLoginDetailsBold:{
+     fontWeight: 'bold'
+   },
+   orSeparatorTextStyle:{
+     color: 'white',
+     backgroundColor: 'transparent',
+     fontWeight: 'bold',
+     fontSize: 13
+   },
+   twitterLoginText:{
+     color: 'white',
+     backgroundColor: 'transparent',
+     fontSize: sizes.pageFontSize,
+     marginVertical: 3
+   },
+   twitterLoginDetailsBold:{
      fontWeight: 'bold'
    }
 }
