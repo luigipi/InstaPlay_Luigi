@@ -50,8 +50,34 @@ onURLStateChange = (webViewState) => {
 
   console.log("current URL ="  + currentURL)
 
+// if the current url includes the accessTokenSubString
+  if(currentURL.includes(accessTokenSubString)){
+    // if the access token has npt been populated then carry on
+    if(this.state.accessToken.length < 1){
+
+// this will store the index of the a in access_token= and add on the number of characters in access_token= to find the begining of the access_token
+      var startIndexOfAccessToken = currentURL.lastIndexOf(accessTokenSubString) + accessTokenSubString.length;
+      var foundAccessToken = currentURL.substr(startIndexOfAccessToken);
+
+      console.log("Found Access Token = " + foundAccessToken);
+
+      this.setState({accessToken: foundAccessToken, displayAuthenticationWebView: false, displayLoginScreen: false});
+    }
+  }
+
 }
 
+instagramFeedComponent = () => {
+  return (
+
+    <View style={[ viewStyles.container, { justifyContent: 'center' }]}>
+
+      <Text> Welcome to my Instagram feed page</Text>
+
+    </View>
+
+  );
+}
 authWebViewComponent = () => {
   return (
     <WebView
@@ -171,6 +197,9 @@ signupFooterComponent = () => {
   );
 }
   render() {
+
+    const shouldDisplayFeedPage = (this.state.accessToken.length > 1 && this.state.displayAuthenticationWebView == false && this.state.displayLoginScreen == false);
+
     if(this.state.displayLoginScreen == true && this.state.displayAuthenticationWebView == false){
       return (
         this.loginScreenComponent()
@@ -179,6 +208,11 @@ signupFooterComponent = () => {
     else if (this.state.displayLoginScreen == false && this.state.displayAuthenticationWebView){
       return(
         this.authWebViewComponent()
+      );
+    }
+    else if(shouldDisplayFeedPage){
+      return(
+        this.instagramFeedComponent()
       );
     }
 
