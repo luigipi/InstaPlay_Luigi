@@ -136,7 +136,7 @@ signupFooterComponent = () => {
     <View style={viewStyles.signupFooterContainer}>
 
       {this.forgotLoginDetailsComponent('Dont have an account?', 'Sign up.', urls.instagramSignUp)}
-
+      
      </View>
   );
 }
