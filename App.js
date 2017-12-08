@@ -79,7 +79,7 @@ export default class App extends Component {
           >
             Facebook
           </LoginButton>
-          {this.forgotLoginDetailsComponent()}
+          {this.forgotLoginDetailsComponent('Forgot your log in details?', 'Get help signingin.', urls.forgotInstagramLogin)}
 
           {this.orSeparatorComponent()}
 
@@ -90,14 +90,17 @@ export default class App extends Component {
     );
   }
 
-  forgotLoginDetailsComponent = () => {
+  forgotLoginDetailsComponent = (normalText, boldText, url) => {
     return(
       <View style={viewStyles.forgotLoginDetailsContainer}>
-        <Text style={textStyles.forgotLoginText}>Forgot your login details?</Text>
+        <Text style={textStyles.forgotLoginText}>{normalText}</Text>
         <TappableText
           textStyle={[textStyles.forgotLoginText, textStyles.forgotLoginDetailsBold]}
-          textTapped={ () => Linking.openURL(urls.forgotInstagramLogin) }
-          >Get help Signing In</TappableText>
+          textTapped={ () => Linking.openURL(url) }>
+
+          {boldText}
+
+          </TappableText>
       </View>
     );
   }
