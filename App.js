@@ -3,7 +3,8 @@ import { StyleSheet, Text, View , ImageBackground, StatusBar, ScrollView, Image,
 import Dimensions from 'Dimensions';
 import LoginButton from './src/components/LoginButton';
 import TappableText from './src/components/TappableText';
-import CellUserDataBar from './src/components/CellUserDataBar';
+import InstaNavigationBar from './src/components/InstaNavigationBar';
+
 
 //This code will give the width and height of the currrent screen
 const windowSize = Dimensions.get('window');
@@ -70,9 +71,9 @@ onURLStateChange = (webViewState) => {
 instagramFeedComponent = () => {
   return (
 
-    <View style={[ viewStyles.container, { justifyContent: 'center' }]}>
+    <View style={[ viewStyles.container]}>
 
-      <Text> Welcome to my Instagram feed page</Text>
+      <InstaNavigationBar />
 
     </View>
 
@@ -222,8 +223,6 @@ signupFooterComponent = () => {
 const viewStyles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center'
   },
   instagramLogo:{
     width: (0.45 * windowSize.width),
