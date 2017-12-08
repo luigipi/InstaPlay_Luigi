@@ -44,7 +44,7 @@ export default class App extends Component {
     return(
       <ImageBackground style={viewStyles.container}
       resizeMode = {'cover'}
-      source={require('./src/images/insta-bg2.jpg')}
+      source={require('./src/images/insta-bg.jpg')}
       >
 
       <StatusBar
@@ -79,13 +79,14 @@ export default class App extends Component {
           >
             Facebook
           </LoginButton>
-          {this.forgotLoginDetailsComponent('Forgot your log in details?', 'Get help signingin.', urls.forgotInstagramLogin)}
+          {this.forgotLoginDetailsComponent('Forgot your log in details?', 'Get help signing in.', urls.forgotInstagramLogin)}
 
           {this.orSeparatorComponent()}
 
           {this.twitterLoginComponent()}
       </ScrollView>
 
+          {this.signupFooterComponent()}
       </ImageBackground>
     );
   }
@@ -130,7 +131,15 @@ export default class App extends Component {
       </View>
     );
   }
+signupFooterComponent = () => {
+  return (
+    <View style={viewStyles.signupFooterContainer}>
 
+      {this.forgotLoginDetailsComponent('Dont have an account?', 'Sign up.', urls.instagramSignUp)}
+
+     </View>
+  );
+}
   render() {
     return (
       this.loginScreenComponent()
@@ -216,6 +225,18 @@ const viewStyles = StyleSheet.create({
     height:(0.15 * windowSize.height),
     marginRight: 10,
     alignSelf: 'center'
+  },
+  signupFooterContainer:{
+    flex: 0.7,
+    backgroundColor: 'rgba(255, 255, 255, 0.15)',
+    borderWidth: 1,
+    borderColor: 'rgba(255, 255, 255, 0.25)',
+    shadowColor: 'black',
+    shadowOffset: {width: 0, height: 5.5},
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingBottom: 10
   }
 
 });
